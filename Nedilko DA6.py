@@ -218,7 +218,7 @@ elif chart_option == "Кластеризація кандидатів (KMeans)":
             x="experience_years:Q",
             y="salary:Q",
             color="Cluster:N",
-            tooltip=["salary", "experience_years", "Cluster"]chart_option
+            tooltip=["salary", "experience_years", "Cluster"]
         ).interactive().properties(title="Кластеризація за зарплатою та досвідом")
         st.altair_chart(chart, use_container_width=True)
     else:
