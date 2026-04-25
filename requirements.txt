@@ -5,3 +5,5 @@ matplotlib
 seaborn
 altair
 scikit-learn
+numpy
+plotly.express
