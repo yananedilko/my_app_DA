@@ -218,7 +218,7 @@ elif chart_option == "Кластеризація кандидатів (KMeans)":
             x="experience_years:Q",
             y="salary:Q",
             color="Cluster:N",
-            tooltip=["salary", "experience_years", "Cluster"]
+            tooltip=["salary", "experience_years", "Cluster"]chart_option
         ).interactive().properties(title="Кластеризація за зарплатою та досвідом")
         st.altair_chart(chart, use_container_width=True)
     else:
@@ -228,5 +228,28 @@ elif chart_option == "Кластеризація кандидатів (KMeans)":
 # In[ ]:
 
 
+if show_regression:
+    st.subheader("📈 Лінійна регресія")
 
+    X = df_filtered[[reg_x]].dropna()
+    y = df_filtered[reg_y].dropna()
+
+    # вирівнюємо індекси
+    data = pd.concat([X, y], axis=1).dropna()
+    X = data[[reg_x]]
+    y = data[reg_y]
+
+    model = LinearRegression()
+    model.fit(X, y)
+
+    y_pred = model.predict(X)
+
+    fig, ax = plt.subplots()
+    ax.scatter(X, y, label="Дані")
+    ax.plot(X, y_pred, color="red", label="Регресія")
+    ax.set_xlabel(reg_x)
+    ax.set_ylabel(reg_y)
+    ax.legend()
+
+    st.pyplot(fig)
 
